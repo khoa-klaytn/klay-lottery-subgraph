@@ -1,12 +1,12 @@
-# PancakeSwap Subgraph
+# Klay Lottery Subgraph
 
-TheGraph exposes a GraphQL endpoint to query the events and entities within the Binance Smart Chain and PancakeSwap ecosystem.
+TheGraph exposes a GraphQL endpoint to query the events and entities within the Binance Smart Chain and Klay Lottery ecosystem.
 
 Currently, there are multiple subgraphs, but additional subgraphs can be added to this repository, following the current architecture.
 
 ## Subgraphs
 
-**[Lottery](https://thegraph.com/legacy-explorer/subgraph/pancakeswap/lottery)**: Tracks all PancakeSwap Lottery with rounds, draws and tickets.
+**[Lottery](https://thegraph.com/legacy-explorer/subgraph/klay-lottery/lottery)**: Tracks all Klay Lottery with rounds, draws and tickets.
 
 ## Dependencies
 
@@ -30,7 +30,3 @@ For any of the subgraph: `blocks` as `[subgraph]`
 4. Run `graph auth --product hosted-service '<ACCESS_TOKEN>'`
 
 5. Deploy via `yarn deploy`.
-
-## v1
-
-To access subgraphs related to PancakeSwap v1 ecosystem ([article](https://pancakeswap.medium.com/the-great-migration-vote-4093cb3edf23)), use [`v1`](https://github.com/pancakeswap/pancake-subgraph/tree/v1) branch.

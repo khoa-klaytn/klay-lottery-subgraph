@@ -1,6 +1,6 @@
 specVersion: 0.0.2
-description: PancakeSwap Lottery
-repository: https://github.com/pancakeswap
+description: Klay Lottery Lottery
+repository: https://github.com/khoa-klaytn/klay-lottery-subgraph
 schema:
   file: ./schema.graphql
 dataSources:
