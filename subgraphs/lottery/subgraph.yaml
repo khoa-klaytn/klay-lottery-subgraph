@@ -1,5 +1,5 @@
 specVersion: 0.0.2
-description: Klay Lottery Lottery
+description: Klay Lottery
 repository: https://github.com/khoa-klaytn/klay-lottery-subgraph
 schema:
   file: ./schema.graphql
@@ -8,9 +8,9 @@ dataSources:
     name: Lottery
     network: bsc
     source:
-      address: '0x5aF6D33DE2ccEC94efb1bDF8f92Bd58085432d2c'
-      abi: Lottery
-      startBlock: 8796011
+      address: '0x56Ba2783C7f2c828dF11DC2275164Eb1531FbC87'
+      abi: IndexedKlayLottery
+      startBlock: 136033722
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4
@@ -21,8 +21,8 @@ dataSources:
         - User
         - Round
       abis:
-        - name: Lottery
-          file: ./abis/Lottery.json
+        - name: IndexedKlayLottery
+          file: ./abis/IndexedKlayLottery.json
       eventHandlers:
         - event: LotteryOpen(indexed uint256,uint256,uint256,uint256,uint256,uint256)
           handler: handleLotteryOpen
