@@ -8,7 +8,7 @@ import {
   LotteryOpen,
   TicketsClaim,
   TicketsPurchase,
-} from "../generated/Lottery/Lottery";
+} from "../generated/Lottery/IndexedKlayLottery";
 import { toBigDecimal } from "./utils";
 
 // BigNumber-like references
@@ -23,7 +23,7 @@ export function handleLotteryOpen(event: LotteryOpen): void {
   lottery.status = "Open";
   lottery.startTime = event.params.startTime;
   lottery.endTime = event.params.endTime;
-  lottery.ticketPrice = toBigDecimal(event.params.priceTicketInCake);
+  lottery.ticketPrice = toBigDecimal(event.params.priceTicket);
   lottery.firstTicket = event.params.firstTicketId;
   lottery.block = event.block.number;
   lottery.timestamp = event.block.timestamp;

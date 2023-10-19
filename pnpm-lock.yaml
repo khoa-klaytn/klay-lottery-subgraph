@@ -16,7 +16,7 @@ devDependencies:
     specifier: ^13.1.0
     version: 13.2.0
   '@graphprotocol/graph-cli':
-    specifier: ^0.21.0
+    specifier: ~0.21.0
     version: 0.21.3
   '@graphprotocol/graph-ts':
     specifier: ^0.20.0
@@ -396,7 +396,7 @@ packages:
   /@types/connect@3.4.37:
     resolution: {integrity: sha512-zBUSRqkfZ59OcwXon4HVxhx5oWCJmc0OtBTK05M+p0dYjgN6iTwIL2T/WbsQZrEsdnwaF9cWQ+azOnpPvIqY3Q==}
     dependencies:
-      '@types/node': 12.20.55
+      '@types/node': 20.8.6
     dev: true
 
   /@types/json-schema@7.0.14:
@@ -436,7 +436,7 @@ packages:
   /@types/ws@7.4.7:
     resolution: {integrity: sha512-JQbbmxZTZehdc2iszGKs5oC3NFnjeay7mtAWrdt7qNtAVK0g19muApzAy4bm9byz79xa2ZnO/BOBC2R8RC5Lww==}
     dependencies:
-      '@types/node': 12.20.55
+      '@types/node': 20.8.6
     dev: true
 
   /@typescript-eslint/eslint-plugin@4.33.0(@typescript-eslint/parser@4.33.0)(eslint@7.32.0)(typescript@4.9.5):

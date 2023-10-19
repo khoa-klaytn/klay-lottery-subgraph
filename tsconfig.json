@@ -3,6 +3,6 @@
   "compilerOptions": {
     "types": ["@graphprotocol/graph-ts"],
     "strict": false,
-    "strictNullChecks": false,
+    "strictNullChecks": false
   }
 }

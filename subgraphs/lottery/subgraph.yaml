@@ -6,11 +6,11 @@ schema:
 dataSources:
   - kind: ethereum/contract
     name: Lottery
-    network: bsc
+    network: mainnet
     source:
-      address: '0x56Ba2783C7f2c828dF11DC2275164Eb1531FbC87'
+      address: '0x932b292250Da9D9eCdFFAfA0F37bb4A07EFd0fc8'
       abi: IndexedKlayLottery
-      startBlock: 136033722
+      startBlock: 136043440
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4
@@ -28,7 +28,7 @@ dataSources:
           handler: handleLotteryOpen
         - event: LotteryClose(indexed uint256,uint256)
           handler: handleLotteryClose
-        - event: LotteryNumberDrawn(indexed uint256,uint256,uint256)
+        - event: LotteryNumberDrawn(indexed uint256,uint32,uint256)
           handler: handleLotteryNumberDrawn
         - event: TicketsPurchase(indexed address,indexed uint256,uint256)
           handler: handleTicketsPurchase
