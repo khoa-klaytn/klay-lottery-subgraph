@@ -54,6 +54,7 @@ export function handleTicketsPurchase(event: TicketsPurchase): void {
   let lottery = Lottery.load(event.params.lotteryId.toString());
   if (lottery === null) {
     log.warning("Trying to purchase tickets for an unknown lottery - #{}", [event.params.lotteryId.toString()]);
+    return;
   }
   lottery.totalTickets = lottery.totalTickets.plus(event.params.numberTickets);
   lottery.save();
@@ -99,6 +100,10 @@ export function handleTicketsPurchase(event: TicketsPurchase): void {
 export function handleTicketsClaim(event: TicketsClaim): void {
   let lottery = Lottery.load(event.params.lotteryId.toString());
   if (lottery !== null) {
+    if (lottery.claimedTickets === null) {
+      log.warning("Lottery #{} has not been drawn yet", [event.params.lotteryId.toString()]);
+      return;
+    }
     lottery.claimedTickets = lottery.claimedTickets.plus(event.params.numberTickets);
     lottery.save();
   }
