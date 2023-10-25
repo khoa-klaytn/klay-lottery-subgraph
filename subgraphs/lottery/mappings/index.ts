@@ -23,7 +23,7 @@ export function handleLotteryOpen(event: LotteryOpen): void {
   lottery.status = "Open";
   lottery.startTime = event.params.startTime;
   lottery.endTime = event.params.endTime;
-  lottery.ticketPrice = toBigDecimal(event.params.priceTicket);
+  lottery.ticketPrice = toBigDecimal(event.params.ticketPrice);
   lottery.firstTicket = event.params.firstTicketId;
   lottery.block = event.block.number;
   lottery.timestamp = event.block.timestamp;
