@@ -8,46 +8,51 @@ overrides:
   gluegun: github:edgeandnode/gluegun#b34b9003d7bf556836da41b57ef36eb21570620a
   assemblyscript: github:AssemblyScript/assemblyscript#3ed76a97f05335504166fce1653da75f4face28f
 
-devDependencies:
-  '@commitlint/cli':
-    specifier: ^13.1.0
-    version: 13.2.1
-  '@commitlint/config-conventional':
-    specifier: ^13.1.0
-    version: 13.2.0
-  '@graphprotocol/graph-cli':
-    specifier: ~0.21.0
-    version: 0.21.3
-  '@graphprotocol/graph-ts':
-    specifier: ^0.20.0
-    version: 0.20.1
-  '@typescript-eslint/eslint-plugin':
-    specifier: ^4.31.0
-    version: 4.33.0(@typescript-eslint/parser@4.33.0)(eslint@7.32.0)(typescript@4.9.5)
-  '@typescript-eslint/parser':
-    specifier: ^4.31.0
-    version: 4.33.0(eslint@7.32.0)(typescript@4.9.5)
-  eslint:
-    specifier: ^7.32.0
-    version: 7.32.0
-  eslint-config-prettier:
-    specifier: ^8.3.0
-    version: 8.10.0(eslint@7.32.0)
-  husky:
-    specifier: ^7.0.0
-    version: 7.0.4
-  mustache:
-    specifier: ^4.2.0
-    version: 4.2.0
-  prettier:
-    specifier: ^2.4.0
-    version: 2.8.8
-  turbo:
-    specifier: ^1.7.4
-    version: 1.10.15
-  typescript:
-    specifier: ^4.3.5
-    version: 4.9.5
+importers:
+
+  .:
+    devDependencies:
+      '@commitlint/cli':
+        specifier: ^13.1.0
+        version: 13.2.1
+      '@commitlint/config-conventional':
+        specifier: ^13.1.0
+        version: 13.2.0
+      '@graphprotocol/graph-cli':
+        specifier: ~0.21.0
+        version: 0.21.3
+      '@graphprotocol/graph-ts':
+        specifier: ^0.20.0
+        version: 0.20.1
+      '@typescript-eslint/eslint-plugin':
+        specifier: ^4.31.0
+        version: 4.33.0(@typescript-eslint/parser@4.33.0)(eslint@7.32.0)(typescript@4.9.5)
+      '@typescript-eslint/parser':
+        specifier: ^4.31.0
+        version: 4.33.0(eslint@7.32.0)(typescript@4.9.5)
+      eslint:
+        specifier: ^7.32.0
+        version: 7.32.0
+      eslint-config-prettier:
+        specifier: ^8.3.0
+        version: 8.10.0(eslint@7.32.0)
+      husky:
+        specifier: ^7.0.0
+        version: 7.0.4
+      mustache:
+        specifier: ^4.2.0
+        version: 4.2.0
+      prettier:
+        specifier: ^2.4.0
+        version: 2.8.8
+      turbo:
+        specifier: ^1.7.4
+        version: 1.10.15
+      typescript:
+        specifier: ^4.3.5
+        version: 4.9.5
+
+  subgraphs/lottery: {}
 
 packages:
 
