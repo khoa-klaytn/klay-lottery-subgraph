@@ -231,6 +231,12 @@
       },
       {
         "indexed": false,
+        "internalType": "uint8",
+        "name": "numBrackets",
+        "type": "uint8"
+      },
+      {
+        "indexed": false,
         "internalType": "uint256",
         "name": "injectedAmount",
         "type": "uint256"
