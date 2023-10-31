@@ -1,5 +1,5 @@
 /* eslint-disable prefer-const */
-import { BigDecimal, BigInt, Bytes, log } from "@graphprotocol/graph-ts";
+import { BigInt, Bytes, log } from "@graphprotocol/graph-ts";
 import { concat } from "@graphprotocol/graph-ts/helper-functions";
 import { Lottery, Round, User } from "../generated/schema";
 import {
@@ -14,13 +14,13 @@ import { toBigDecimal } from "./utils";
 // BigNumber-like references
 let ZERO_BI = BigInt.fromI32(0);
 let ONE_BI = BigInt.fromI32(1);
-let ZERO_BD = BigDecimal.fromString("0");
 
 export function handleLotteryOpen(event: LotteryOpen): void {
   let lottery = new Lottery(event.params.lotteryId.toString());
   lottery.totalUsers = ZERO_BI;
   lottery.totalTickets = ZERO_BI;
   lottery.status = "Open";
+  lottery.numBrackets = event.params.numBrackets;
   lottery.startTime = event.params.startTime;
   lottery.endTime = event.params.endTime;
   lottery.ticketPrice = toBigDecimal(event.params.ticketPrice);
@@ -64,13 +64,11 @@ export function handleTicketsPurchase(event: TicketsPurchase): void {
     user = new User(event.params.buyer.toHex());
     user.totalRounds = ZERO_BI;
     user.totalTickets = ZERO_BI;
-    user.totalCake = ZERO_BD;
     user.block = event.block.number;
     user.timestamp = event.block.timestamp;
     user.save();
   }
   user.totalTickets = user.totalTickets.plus(event.params.numberTickets);
-  user.totalCake = user.totalCake.plus(event.params.numberTickets.toBigDecimal().times(lottery.ticketPrice));
   user.save();
 
   let roundId = concat(
@@ -106,12 +104,6 @@ export function handleTicketsClaim(event: TicketsClaim): void {
     }
     lottery.claimedTickets = lottery.claimedTickets.plus(event.params.numberTickets);
     lottery.save();
-  }
-
-  let user = User.load(event.params.claimer.toHex());
-  if (user !== null) {
-    user.totalCake = user.totalCake.plus(toBigDecimal(event.params.amount));
-    user.save();
   }
 
   let roundId = concat(
