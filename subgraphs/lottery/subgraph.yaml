@@ -8,9 +8,9 @@ dataSources:
     name: Lottery
     network: mainnet
     source:
-      address: '0xa670cBDCea52d444cD39B0aC0Aa682539660db8E'
-      abi: IndexedKlayLottery
-      startBlock: 137162339
+      address: '0x1eea182ec799Eb3494717eA0D96716D1faC38EbA'
+      abi: IndexedSSLottery
+      startBlock: 137751618
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4
@@ -21,8 +21,8 @@ dataSources:
         - User
         - Round
       abis:
-        - name: IndexedKlayLottery
-          file: ./abis/IndexedKlayLottery.json
+        - name: IndexedSSLottery
+          file: ./abis/IndexedSSLottery.json
       eventHandlers:
         - event: LotteryOpen(indexed uint256,uint256,uint256,uint256,uint256,uint8,uint256)
           handler: handleLotteryOpen

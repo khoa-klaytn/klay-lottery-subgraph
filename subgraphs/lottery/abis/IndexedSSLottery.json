@@ -3,12 +3,7 @@
     "inputs": [
       {
         "internalType": "address",
-        "name": "_randomGeneratorAddress",
-        "type": "address"
-      },
-      {
-        "internalType": "address",
-        "name": "_dataFeedConsumerAddress",
+        "name": "_accessControlAddress",
         "type": "address"
       },
       {
@@ -80,6 +75,16 @@
   {
     "inputs": [],
     "name": "LotteryOver",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "NotAccessControl",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "OwnerMismatch",
     "type": "error"
   },
   {
@@ -471,15 +476,27 @@
   },
   {
     "inputs": [],
-    "name": "operatorAddress",
-    "outputs": [
+    "name": "onContractAddressChange",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
       {
-        "internalType": "address payable",
-        "name": "",
+        "internalType": "enum ContractName",
+        "name": "contractName",
+        "type": "uint8"
+      },
+      {
+        "internalType": "address",
+        "name": "contractAddress",
         "type": "address"
       }
     ],
-    "stateMutability": "view",
+    "name": "onContractAddressChange",
+    "outputs": [],
+    "stateMutability": "nonpayable",
     "type": "function"
   },
   {
@@ -511,6 +528,19 @@
   {
     "inputs": [],
     "name": "renounceOwnership",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_accessControlAddress",
+        "type": "address"
+      }
+    ],
+    "name": "setAccessControl",
     "outputs": [],
     "stateMutability": "nonpayable",
     "type": "function"

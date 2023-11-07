@@ -8,7 +8,7 @@ import {
   LotteryOpen,
   TicketsClaim,
   TicketsPurchase,
-} from "../generated/Lottery/IndexedKlayLottery";
+} from "../generated/Lottery/IndexedSSLottery";
 import { toBigDecimal } from "./utils";
 
 // BigNumber-like references
