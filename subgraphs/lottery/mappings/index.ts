@@ -20,7 +20,7 @@ export function handleLotteryOpen(event: LotteryOpen): void {
   lottery.totalUsers = ZERO_BI;
   lottery.totalTickets = ZERO_BI;
   lottery.status = "Open";
-  lottery.numBrackets = event.params.numBrackets;
+  lottery.numBrackets = BigInt.fromI32(event.params.numBrackets);
   lottery.startTime = event.params.startTime;
   lottery.endTime = event.params.endTime;
   lottery.ticketPrice = toBigDecimal(event.params.ticketPrice);
