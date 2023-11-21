@@ -8,9 +8,9 @@ dataSources:
     name: Lottery
     network: mainnet
     source:
-      address: '0x0cE4bfbA05a56D3df4B1603f311156D6f57fea80'
+      address: '0x2E5CbF213Bb07893a75EC7A2E9d81eb7d1388692'
       abi: IndexedSSLottery
-      startBlock: 138450571
+      startBlock: 138978805
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4
