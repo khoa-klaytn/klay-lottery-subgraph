@@ -118,3 +118,5 @@ build/
 generated/
 
 .turbo
+
+subgraphs/*/subgraph.yaml
