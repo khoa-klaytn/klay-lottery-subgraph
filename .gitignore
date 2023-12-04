@@ -119,4 +119,5 @@ generated/
 
 .turbo
 
+subgraphs/*/abis/
 subgraphs/*/subgraph.yaml
