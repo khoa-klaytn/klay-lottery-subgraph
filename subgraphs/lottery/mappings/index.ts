@@ -68,8 +68,7 @@ export function handleTicketsPurchase(event: TicketsPurchase): void {
     user.timestamp = event.block.timestamp;
     user.save();
   }
-  const numberTickets = event.params.numberTickets;
-  user.totalTickets = user.totalTickets.plus(numberTickets);
+  user.totalTickets = user.totalTickets.plus(event.params.numberTickets);
   user.save();
 
   let roundId = concat(
@@ -93,32 +92,33 @@ export function handleTicketsPurchase(event: TicketsPurchase): void {
     lottery.totalUsers = lottery.totalUsers.plus(ONE_BI);
     lottery.save();
   }
-  round.totalTickets = round.totalTickets.plus(numberTickets);
+  round.totalTickets = round.totalTickets.plus(event.params.numberTickets);
   round.save();
 }
 
 export function handleTicketsClaim(event: TicketsClaim): void {
-  const lotteryId = event.params.lotteryId.toString();
-  let lottery = Lottery.load(lotteryId);
+  let lottery = Lottery.load(event.params.lotteryId.toString());
   if (lottery === null) {
-    log.warning("Trying to claim tickets for an unknown lottery - #{}", [lotteryId]);
+    log.warning("Trying to claim tickets for an unknown lottery - #{}", [event.params.lotteryId.toString()]);
     return;
   }
   if (lottery.claimedTickets === null) {
-    log.warning("Lottery #{} has not been drawn yet", [lotteryId]);
+    log.warning("Lottery #{} has not been drawn yet", [event.params.lotteryId.toString()]);
     return;
   }
 
-  const numberTickets = event.params.numberTickets;
-  lottery.claimedTickets = lottery.claimedTickets.plus(numberTickets);
+  lottery.claimedTickets = lottery.claimedTickets.plus(event.params.numberTickets);
   lottery.save();
 
-  let roundId = concat(Bytes.fromHexString(event.params.claimer.toHex()), Bytes.fromUTF8(lotteryId)).toHex();
+  let roundId = concat(
+    Bytes.fromHexString(event.params.claimer.toHex()),
+    Bytes.fromUTF8(event.params.lotteryId.toString())
+  ).toHex();
   let round = Round.load(roundId);
   if (round === null) {
     log.warning("Trying to claim tickets for an unknown round - #{}", [roundId]);
     return;
   }
-  round.claimedTickets = round.claimedTickets.plus(numberTickets);
+  round.claimedTickets = round.claimedTickets.plus(event.params.numberTickets);
   round.save();
 }
