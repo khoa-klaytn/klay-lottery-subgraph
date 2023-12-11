@@ -68,7 +68,8 @@ export function handleTicketsPurchase(event: TicketsPurchase): void {
     user.timestamp = event.block.timestamp;
     user.save();
   }
-  user.totalTickets = user.totalTickets.plus(event.params.numberTickets);
+  const numberTickets = event.params.numberTickets;
+  user.totalTickets = user.totalTickets.plus(numberTickets);
   user.save();
 
   let roundId = concat(
@@ -80,6 +81,7 @@ export function handleTicketsPurchase(event: TicketsPurchase): void {
     round = new Round(roundId);
     round.lottery = event.params.lotteryId.toString();
     round.user = event.params.buyer.toHex();
+    round.claimedTickets = ZERO_BI;
     round.totalTickets = ZERO_BI;
     round.block = event.block.number;
     round.timestamp = event.block.timestamp;
@@ -91,28 +93,32 @@ export function handleTicketsPurchase(event: TicketsPurchase): void {
     lottery.totalUsers = lottery.totalUsers.plus(ONE_BI);
     lottery.save();
   }
-  round.totalTickets = round.totalTickets.plus(event.params.numberTickets);
+  round.totalTickets = round.totalTickets.plus(numberTickets);
   round.save();
 }
 
 export function handleTicketsClaim(event: TicketsClaim): void {
-  let lottery = Lottery.load(event.params.lotteryId.toString());
-  if (lottery !== null) {
-    if (lottery.claimedTickets === null) {
-      log.warning("Lottery #{} has not been drawn yet", [event.params.lotteryId.toString()]);
-      return;
-    }
-    lottery.claimedTickets = lottery.claimedTickets.plus(event.params.numberTickets);
-    lottery.save();
+  const lotteryId = event.params.lotteryId.toString();
+  let lottery = Lottery.load(lotteryId);
+  if (lottery === null) {
+    log.warning("Trying to claim tickets for an unknown lottery - #{}", [lotteryId]);
+    return;
+  }
+  if (lottery.claimedTickets === null) {
+    log.warning("Lottery #{} has not been drawn yet", [lotteryId]);
+    return;
   }
 
-  let roundId = concat(
-    Bytes.fromHexString(event.params.claimer.toHex()),
-    Bytes.fromUTF8(event.params.lotteryId.toString())
-  ).toHex();
+  const numberTickets = event.params.numberTickets;
+  lottery.claimedTickets = lottery.claimedTickets.plus(numberTickets);
+  lottery.save();
+
+  let roundId = concat(Bytes.fromHexString(event.params.claimer.toHex()), Bytes.fromUTF8(lotteryId)).toHex();
   let round = Round.load(roundId);
-  if (round !== null) {
-    round.claimed = true;
-    round.save();
+  if (round === null) {
+    log.warning("Trying to claim tickets for an unknown round - #{}", [roundId]);
+    return;
   }
+  round.claimedTickets = round.claimedTickets.plus(numberTickets);
+  round.save();
 }

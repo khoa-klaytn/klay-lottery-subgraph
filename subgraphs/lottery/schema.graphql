@@ -57,7 +57,7 @@ type Round @entity {
   lottery: Lottery!
   user: User!
 
-  claimed: Boolean
+  claimedTickets: BigInt!
   totalTickets: BigInt!
 
   "Block number"
