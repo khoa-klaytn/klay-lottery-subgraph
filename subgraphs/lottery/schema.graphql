@@ -26,6 +26,7 @@ type Lottery @entity {
   endTime: BigInt!
 
   ticketPrice: BigDecimal!
+  remainingFree: BigInt!
   firstTicket: BigInt!
   lastTicket: BigInt
 

@@ -8,7 +8,7 @@ import {
   LotteryOpen,
   TicketsClaim,
   TicketsPurchase,
-} from "../generated/Lottery/IndexedSSLottery";
+} from "../generated/Lottery/SSLottery";
 import { toBigDecimal } from "./utils";
 
 // BigNumber-like references
@@ -24,6 +24,7 @@ export function handleLotteryOpen(event: LotteryOpen): void {
   lottery.startTime = event.params.startTime;
   lottery.endTime = event.params.endTime;
   lottery.ticketPrice = toBigDecimal(event.params.ticketPrice);
+  lottery.remainingFree = BigInt.fromI32(event.params.remainingFree);
   lottery.firstTicket = event.params.firstTicketId;
   lottery.block = event.block.number;
   lottery.timestamp = event.block.timestamp;
@@ -56,6 +57,9 @@ export function handleTicketsPurchase(event: TicketsPurchase): void {
     log.warning("Trying to purchase tickets for an unknown lottery - #{}", [event.params.lotteryId.toString()]);
     return;
   }
+  lottery.remainingFree = lottery.remainingFree.gt(event.params.numberTickets)
+    ? lottery.remainingFree.minus(event.params.numberTickets)
+    : ZERO_BI;
   lottery.totalTickets = lottery.totalTickets.plus(event.params.numberTickets);
   lottery.save();
 
